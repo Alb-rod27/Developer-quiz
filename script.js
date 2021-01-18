@@ -33,35 +33,35 @@ function countDown(amount){
 function printQuestion(questionObj){
     questions.textContent = "";
     questions.textContent = questionObj.q;
+}
 
 
     questionContainerEl.textContent = "";
 
     for (answer in questionObj){
+    }
         if (answer !== "q"){
            var answerBtn = document.createElement('button');
             answerBtn.setAttribute('id', 'answer-id');
             answerBtn.setAttribute('class', 'btn');
             answerBtn.textContent = questionObj[answer]; 
+        }
        
-   
+    
     answerBtn.onclick = function() {
         
         if (
-                answerBtn.textContent === "Document Object Model" ||
-                answerBtn.textContent === "Application Programming Interface" ||
-                answerBtn.textContent === "all of the above" 
-                
-        ){
-            
-            
-        }
-
+            answerBtn.textContent === "Document Object Model" ||
+            answerBtn.textContent === "Application Programming Interface" ||
+            answerBtn.textContent === "all of the above"   
+        )
+    
+        {}
+    }
         score++;
-            
             currentQuestionindex++;
-            
             answerArea.textContent = "CORRECT!";
+    
             
 
         
