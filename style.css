@@ -7,6 +7,20 @@
     height: 100px;
     text-align: center;
 }
+
+#highscore-btn{
+  background-color: none;
+  width: 10%;
+  float: left;
+  text-align: center;
+}
+
+.timer {
+    float: right;
+    font-size: 30px;
+}
+
+
 body {
     background: #EDEDED;
     color: gray;
@@ -16,21 +30,27 @@ body {
     min-height: 100vh;
     flex-direction: column;
     font-family: Verdana, Geneva, Tahoma, sans-serif;
+
 }
 #main {
 width: 700px;
 height: 300px;
 margin: 0 auto;
 }
+
 #endgame-placeholder {
     display: none;
 }
+
 #showhigh-scores {
     display: none;
 }
+
 .btn:hover {
 background-color: lightblue;
+cursor: pointer;
 }
+
  .btn {
     color: white;
     background-color: navy;
