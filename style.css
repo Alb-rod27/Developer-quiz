@@ -1,0 +1,62 @@
+* {
+    box-sizing: border-box;
+}
+.container {
+    margin: auto;
+    width: 100%;
+    height: 100px;
+    text-align: center;
+}
+body {
+    background: #EDEDED;
+    color: gray;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    min-height: 100vh;
+    flex-direction: column;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+#main {
+width: 700px;
+height: 300px;
+margin: 0 auto;
+}
+#endgame-placeholder {
+    display: none;
+}
+#showhigh-scores {
+    display: none;
+}
+.btn:hover {
+background-color: lightblue;
+}
+ .btn {
+    color: white;
+    background-color: navy;
+    box-shadow: 0 3px gray;
+    padding: 10px 15px;
+    font-size: 2.2rem;
+    border-radius: 12px;
+    outline: none;
+    padding: 5px 10px;
+    font-size: 1.2rem;
+    display: block;
+    margin: 10px auto;
+}
+
+div, h1, button{
+    color: rgb(0, 182, 243);
+}
+
+footer {
+    width: 100%;
+    margin-top: 500px;
+    color: navy;
+}
+
+
+
+
+
+
