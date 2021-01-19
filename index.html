@@ -1,50 +1,44 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
     <title>Developer Quiz</title>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="style.css">
-</head>
 
-<body>  
-    <header>
-      <a href="/High Score.html" id="highscore-btn" class="btn">
-        High Score</a>
-        <div class="timer">Time: <span id="time">0</span></div>
-    </header>
-    
-        <div id="showhigh-scores"></div>
-        <div class="container">
-          <h1>Developer Quiz</h1>
-            <p>Try to answer the following code related quetions before the time limit.<br>
-            Keep in mind that that incorrect answers will penalize your score/ time<br>
-            by ten seconds!
-            </p>
-            <button id="start" class="btn"> Start Quiz</button>
-            <h2 id="countdown"></h2>
-            <div id="main">
-              <div id="questions">click start to begin</div>
-              <div id="endgame-placeholder">
-                <form method="post" name="highscore-form" id ="string-initials">
-                  Enter Your Initials Here <input type="text" name="high-score-initials">
-                  <button class="btn" id="save-task" type="submit" >Click here for High Score</button>
-                </form>
-              </div>
-              <div class="question-container">
-              </div>
-            </div>
-            <div id="answer-placeholder"></div>
-            </div>
-        </div>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+
+  <body>
+    <div class="scores"><a href="High Score.html">View Highscores</a></div>
+
+    <div class="timer">Time: <span id="time">0</span></div>
+
+    <div class="wrapper">
+      <div id="start-screen" class="start">
+        <h1>Developer Quiz</h1>
+     
+        <button id="start">Start Quiz</button>
+      </div>
+
+      <div id="questions" class="hide">
+        <h2 id="question-title"></h2>
+        <div id="choices" class="choices"></div>
+      </div>
+
+      <div id="end-screen" class="hide">
+        <h2>All done!</h2>
+        <p>Your score is<span id="final-score"></span>.</p>
+        <p>
+          Enter initials: <input type="text" id="initials" max="3" />
+          <button id="submit">Submit</button>
+        </p>
+      </div>
+
+      <div id="feedback" class="feedback hide"></div>
     </div>
-  </div>
 
-</body>
-
-<script src="script.js"></script> 
-
-<footer> &copy;By Albert Rodriguez</footer>
-
+    <script src="/script.js"></script>
+    <script src="/High Score.html"></script>
+  </body>
 </html>
-
