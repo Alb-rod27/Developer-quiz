@@ -3,7 +3,7 @@
     margin: 100px auto 0 auto;
     max-width: 600px;
   }
-  
+
   .hide {
     display: none;
   }
@@ -24,18 +24,8 @@
     right: 10px;
   }
   
-  a {
-    color: black;
-    text-decoration: none;
-    transition: color 0.1s;
-  }
-  
-  a:hover {
-    color: rgb(1, 1, 150);
-  }
-  
   #start:hover {
-    background-color: lightblue;
+    background-color: purple;
   }
 
   button {
@@ -43,7 +33,7 @@
     margin: 5px;
     cursor: pointer;
     font-size: 100%;
-    background-color: purple;
+    background-color: rgb(53, 16, 102);
     border-radius: 5px;
     padding: 2px 10px;
     color: white;
