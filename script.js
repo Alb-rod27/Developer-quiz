@@ -1,8 +1,7 @@
 
-var questionsEl = document.querySelector("#questions");
+var questionContainerEl = document.querySelector("#questions");
 var timerEl = document.querySelector("#time");
 var startBtn = document.querySelector("#start");
-
 
 var timerId;
 var timeLeft = 60;
@@ -16,17 +15,6 @@ var questions = [
   { q: "What is the purpose of Javascript?", a: "To make coffee", b: "functionality", c: "to make a movie", d: "structure"}
 ]
 
-
-function startQuiz() {
-
-  var startScreenEl = document.getElementById("start-screen");
-  startScreenEl.setAttribute("class", "hide");
-
-  questionsEl.removeAttribute("class");
-
-  timerEl.textContent = time;
-}
-
 function countDown() {
   
   time--;
@@ -34,6 +22,60 @@ function countDown() {
 
   if (time <= 0) {
     quizEnd();
+  }
+}
+
+function startQuiz() {
+
+  var startScreenEl = document.getElementById("start-screen");
+  startScreenEl.setAttribute("class", "hide");
+
+  questionsEl.removeAttribute("class");
+  timerId = setInterval(1000);
+  timerEl.textContent = time;
+}
+
+function printQuestion(questionObj) {
+  questionSpanEl.textContent = '';
+  questionSpanEl.textContent =questionObj.q;
+  questionContainerEl.textContent = '';
+
+  for (answer in questionObj) {
+    if (answer !== 'q') {
+      var answerBtn = document.createElement('button');
+        answerBtn.setAttribute('id', 'answer-id');
+        answerBtn.setAttribute('class', 'btn'); 
+        answerBtn.textContent = questionObj[answer];
+//----------------
+        answerBtn.onclick = function() {
+          if (
+            answerBtn.textContent === "structure" ||
+            answerBtn.textContent === "styling" ||
+            answerBtn.textContent === "<h1>" ||
+            answerBtn.textContent === "HyperText Markup Language" ||
+            answerBtn.textContent === "functionality"
+            
+            ) {
+              score++;
+              currentQuestionIndex++;
+
+              setTimeout(function(){ 
+                answerArea.textContent = "";
+                
+                if(currentQuestionindex === 5){
+                    endGame(score);
+                } else {
+                    printQuestion(questions[currentQuestionindex]);
+                }
+                
+
+                }, 3000);
+
+            }
+
+        };
+        questionContainerEl.appendChild(answerBtn);
+    }
   }
 }
 
