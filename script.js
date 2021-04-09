@@ -1,7 +1,8 @@
 
 var questionContainerEl = document.querySelector("#questions");
+var countDownEl = document.querySelector("countdown");
 var timerEl = document.querySelector("#time");
-var startBtn = document.querySelector("#start");
+var startQuiz = document.querySelector("#start");
 
 var timerId;
 var timeLeft = 60;
@@ -15,25 +16,25 @@ var questions = [
   { q: "What is the purpose of Javascript?", a: "To make coffee", b: "functionality", c: "to make a movie", d: "structure"}
 ]
 
-function countDown() {
-  
-  time--;
-  timerEl.textContent = time;
-
-  if (time <= 0) {
-    quizEnd();
-  }
+function countDown(amount) {
+  if ( amount > 1 ) {
+    timeLeft =  timeLeft - amount;
+} else {
+    timeLeft--;
 }
 
-function startQuiz() {
-
-  var startScreenEl = document.getElementById("start-screen");
-  startScreenEl.setAttribute("class", "hide");
-
-  questionsEl.removeAttribute("class");
-  timerId = setInterval(1000);
-  timerEl.textContent = time;
+countDownEl.textContent = timeLeft
 }
+
+//  startQuiz(); {
+
+//   var startScreenEl = document.getElementById("start-screen");
+//   startScreenEl.setAttribute("class", "hide");
+
+//   questionsEl.removeAttribute("class");
+//   timerId = setInterval(1000);
+//   timerEl.textContent = time;
+// }
 
 function printQuestion(questionObj) {
   questionSpanEl.textContent = '';
@@ -69,8 +70,21 @@ function printQuestion(questionObj) {
                 }
                 
 
-                }, 3000);
+                }, 1000);
 
+            } else {
+              currentQuestionIndex++;
+              answerArea.textContent = "Incorrect!";
+
+              countDown(10);
+              setTimeout(function(){
+                answerArea.textContent = "";
+                if(currentQuestionIndex == 5){
+                  endGame(score);
+                } else {
+                  printQuestion(questions[currentQuestionIndex]);
+                }
+              }, 2000);
             }
 
         };
@@ -79,7 +93,20 @@ function printQuestion(questionObj) {
   }
 }
 
+// startQuiz.addEventListener('click', function() {
+//   var countDownTimerID = setInterval(function() {
+    
+//       if (timeLeft > 0) {
+//         countDown(amount);
+//       } else {
+//           endGame(score, '', 'end game');
+//           clearInterval(countDownTimerID);
+//       }
+//     }, 1000);
+    
+//     printQuestion(questions[currentQuestionindex]);
+//   });
+  
+//   startBtn.onclick = startQuiz;
 
-submitBtn.onclick = saveHighscore;
-
-startBtn.onclick = startQuiz;
+  
