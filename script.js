@@ -2,10 +2,10 @@
 var questionContainerEl = document.querySelector(".contains-questions");
 var countDownEl = document.querySelector("countdown");
 var questionSpanEl = document.querySelector("#question-span");
-var timerEl = document.querySelector("#time");
 var startEl = document.querySelector("#start");
+// var timerEl = document.querySelector("#time");
 
-var timerId;
+
 var timeLeft = 60;
 var currentQuestionIndex = 0;
 
@@ -48,7 +48,7 @@ function printQuestion(questionObj) {
     if (answer !== 'q') {
       var answerBtn = document.createElement('button');
       answerBtn.setAttribute('id', 'answer-id');
-      answerBtn.setAttribute('class', 'btn');
+      answerBtn.setAttribute('class', 'button');
       answerBtn.textContent = questionObj[answer];
       //----------------
       answerBtn.onclick = function() {
