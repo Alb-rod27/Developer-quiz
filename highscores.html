@@ -1,23 +1,27 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-    <title>High score</title>
 
-    <link rel="stylesheet" href="./assets/css/style.css" />
-  </head>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+  <title>High score</title>
 
-  <body>
-    <div class="wrapper">
-      <h1>High Scores</h1>
-      <ol id="highscores"></ol>
+  <link rel="stylesheet" href="./assets/css/style.css" />
+</head>
 
-      <button id="go-back" class="btn">Go Back</button>
-      <button id="clear-scores" class="btn">Clear Highscore</button>
-    </div>
+<body>
+  <div class="container">
+    <h1>High Scores</h1>
+    <div id="initials"></div>
+    <ul>
+      <li id="highscore-list" class="list">scores go here</li>
+    </ul>
+    <button id="go-back" class="btn">Go Back</button>
+    <button id="clear-scores" class="btn">Clear Highscore</button>
+  </div>
 
-    <script src="assets/javascript/highscore.js"></script>
-  </body>
+  <script src="assets/javascript/highscore.js"></script>
+</body>
+
 </html>
