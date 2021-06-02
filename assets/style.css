@@ -28,7 +28,7 @@
     background-color: purple;
   }
 
-  button {
+  .button {
     display: inline-block;
     margin: 5px;
     cursor: pointer;
