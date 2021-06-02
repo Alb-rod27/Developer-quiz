@@ -2,36 +2,59 @@
 <html lang="en">
 
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-  <title>Developer Quiz</title>
-
-  <link rel="stylesheet" href="./assets/style.css" />
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./assets/style.css">
+    <title>Developer Quiz</title>
 </head>
 
 <body>
-  <div>
-    <div class="scores"><a href="High-Score.html">View Highscores</a></div>
-
-    <!-- <div class="timer">Time: <span id="time">0</span></div> -->
-
-    <div class="wrapper">
-      <div id="start-screen" class="start">
-        <h1>Developer Quiz</h1>
-
-        <button id="start" class="button">Start Quiz</button>
-        <h2 id="countdown"></h2>
-        <!-- <div id="main"></div> -->
-        <div id="question-span"></div>
-
-        <div class="contains-questions"></div>
-        <!-- <h2 id="question-title"></h2> -->
-        <div id="answer"></div>
-      </div>
+  <!-- score -->
+    <div id="score-holder"class="score hide">
+        <span id="correct-answers">Score:</span>
+        <span id="final-score"></span>
+        <span id="final-initials"></span>
     </div>
-  </div>
-    <script src="script.js"></script>
+
+    <!-- questions box start  -->
+    <main class="container" id="container">
+
+        <!-- submit initials for high scores -->
+        <div id="finish-show" class="hide">
+            <input type="text" placeholder="Enter Your Initials" id="name" name="name" >
+            <button id="submit-btn" type="submit">Submit</button>
+        </div>
+
+        <!-- questions container -->
+        <div id="finish-hide">
+            <article id="question-container" class="hide">
+                <div id="question">Question</div>
+                <div id="answer-buttons" class="btn-grid">
+                    <button class="btn">Answer 1</button>
+                    <button class="btn">Answer 2</button>
+                    <button class="btn">Answer 3</button>
+                    <button class="btn">Answer 4</button>
+                </div>
+            </article>
+            <!-- controls -->
+            <div class="controls">
+                <button id="start-btn" class="start-btn btn">Start Quiz</button>
+                <button id="next-btn" class="next-btn btn hide">Next</button>
+                <button id="finish-btn" class="finish-btn btn hide">Finish</button>
+            </div>
+        </div>
+    </main>
+    <!-- questions box end -->
+
+    <!-- timer -->
+    <div id="timer" class="score hide">     
+        <span id="time-left">Timer:</span>
+    </div>
+
+
+
+
+    <script src="./assets/script.js"></script>
 </body>
 
 </html>
