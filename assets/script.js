@@ -1,97 +1,130 @@
-let currQuestion = 0;
-let question = [
-  {
-    question: 'What is the purpose of HTML?',
-    choiceA: 'Styling',
-    choiceB: 'functionality',
-    choiceC: 'Structure',
-    correctAnswer: 'C'
-  },
-  {
-    question: 'What is the purpose of CSS?',
-    choiceA: 'Emails',
-    choiceB: 'Styling',
-    choiceC: 'Structure',
-    correctAnswer: 'B'
-  },
-  {
-    question: 'In HTML what tag would you use to add the biggest type of section heading?',
-    choiceA: '<h2>',
-    choiceB: '<head>',
-    choiceC: '<h1>',
-    correctAnswer: 'C'
-  },
-  {
-    question: 'What does HTML stand for?',
-    choiceA: 'HyperText Markup Language',
-    choiceB: 'Ham Tomato Mayo and Lettuce',
-    choiceC: 'How To Mail Letters',
-    correctAnswer: 'A'
-  },
-  {
-    question: 'What is the purpose of Javascript?',
-    choiceA: 'To make coffee',
-    choiceB: 'functionality',
-    choiceC: 'structure',
-    correctAnswer: 'B'
-  },
-]
-
-let timeLeft = 0;
-
 let score = 0;
+let shuffledQuestions, currentQuestionsIndex;
+let playerScore = document.querySelector('#final-score');
+let playerInitials = document.querySelector('#final-initials');
+let seconds = 60;
+let answerPicked = false
+let name = document.getElementById('name')
+let playerInfo = [];
 
-//start of quiz
-function timer() {
-  let timer = document.getElementById('timer')
-  timeLeft = 50;
-  let ticker = setInterval(function () {
-     timer.innerHTML = timeLeft;
-    if (timeLeft > 0) {
-      timeLeft--;
-    } else {
-      clearInterval(ticker);
-      $("#interface").html(`<h2>Time Up!</h2>`);
-    }
-  }, 1000)
-}
+/////////////////////////////////
+const scoreBtn = document.getElementById('correct-answers');
+const questionContainerElement = document.getElementById('question-container');
+const questionElement = document.getElementById('question');
+const scoreBox = document.getElementById('score-box');
+const timerBox = document.getElementById('timer-box');
+const scoreHolder = document.getElementById('score-holder');
+const timer = document.getElementById('timer');
 
-function changeQuestion() {
-  $("#interface").html(`<h2>${question[currQuestion].question}</h2>
-  <button onclick="checkAnswer('A')">${question[currQuestion].choiceA}</button>
-  <button onclick="checkAnswer('B')">${question[currQuestion].choiceB}</button>
-  <button onclick="checkAnswer('C')">${question[currQuestion].choiceC}</button>`);
-}
+const startButton = document.getElementById('start-btn');
+const nextButton = document.getElementById('next-btn');
+const finishButton = document.getElementById('finish-btn');
+const answerButtonsElement = document.getElementById('answer-buttons');
+const submitBtn = document.getElementById('submit-btn');
 
-function checkAnswer(answer) {
-  if (answer == question[currQuestion].correctAnswer) {
-    // It's correct
+function startGame() {
+  countDown();
+    startButton.classList.add('hide');
+    nextButton.classList.remove('hide');
+    questionContainerElement.classList.remove('hide');
+    scoreBtn.classList.remove('hide');
+    scoreHolder.classList.remove('hide');
+    timer.classList.remove('hide');
+    currentQuestionsIndex = 0;
+    shuffledQuestions = questions.sort(() => Math.random() - .5);
+    setNextQuestion()
+};
+
+function setNextQuestion() {
+  resetState();
+  showQuestion(shuffledQuestions[currentQuestionsIndex]);
+};
+
+function showQuestion(question) {
+  answerPicked = false
+  questionElement.innerText = question.question;
+  question.answers.forEach(answer => {
+      const button = document.createElement('button');
+      button.innerText = answer.text;
+      button.classList.add('btn');
+      if (answer.correct) {
+          button.dataset.correct = answer.correct
+      };
+      button.addEventListener('click', selectAnswer);
+      answerButtonsElement.appendChild(button);
+  });
+};
+
+function resetState() {
+  nextButton.classList.add('hide');
+  while (answerButtonsElement.firstChild) {
+      answerButtonsElement.removeChild(answerButtonsElement.firstChild);
+  };
+};
+
+function countDown() {
+  let timeInterval = setInterval(function () {
+      let counter = document.getElementById('time-left');
+      counter.innerHTML = 'Timer: ' + seconds;
+      if (seconds > 1) {
+          // Set the `textContent` of `counter` to show the remaining seconds
+          counter.textContent = 'Timer: ' + seconds;
+          seconds--;
+      } else {
+          timer.innerHTML = '';
+          // Use `clearInterval()` to stop the timer
+          clearInterval(timeInterval);
+          // Call the `displayMessage()` function
+          finishGame();
+      }
+      if (seconds == 0) {
+          finishGame();
+      }
+  }, 1000);
+};
+
+function selectAnswer(e) {
+  const selectedButton = e.target;
+  const correct = selectedButton.dataset.correct;
+
+  Array.from(answerButtonsElement.children).forEach(button => {
+      setStatusClass(button, button.dataset.correct)
+  });
+  if (shuffledQuestions.length > currentQuestionsIndex + 1) {
+      nextButton.classList.remove('hide');
   } else {
-    if (timeLeft > 9) {
-      timeLeft -= 10;
-    } else {
-      timeLeft == 0;
-    }
+      nextButton.classList.add('hide');
+      finishButton.classList.remove('hide');
+  };
+  if (answerPicked === false) {
+      if (selectedButton.dataset = correct) {
+          score += 7
+      } else {
+          seconds -= 5;
+      }
+      answerPicked = true
   }
+  document.getElementById('correct-answers').innerHTML = "Score: " + score;
+};
 
-  if (currQuestion < question. length - 1) {
-    currQuestion++;
-    changeQuestion();
-} else {
-    saveScore();
-    $("#interface").html(`<h2>End of Quiz</h2>
-        <p>Your Score: ${timeLeft}</p>
-        <p>Best Score: ${localStorage.getItem('currBest')}`);
-}
-}
-function saveScore() {
-if (localStorage.getItem('currBest') && localStorage.getItem('currBest') > timeLeft) {
-    localStorage.setItem('currBest', timeLeft);
-}
-}
+function setStatusClass(element, correct) {
+  clearStatusClass(element)
+  if (correct) {
+      element.classList.add('correct');
+  } else {
+      element.classList.add('wrong');
+  };
+};
 
-function setStage() {
-timer();
-currQuestion = 0;
-changeQuestion();
-}
+function clearStatusClass(element) {
+  element.classList.remove('correct');
+  element.classList.remove('wrong');
+};
+
+function finishGame() {
+  document.getElementById('finish-hide').classList.add('hide');
+  document.getElementById('finish-show').classList.remove('hide');
+  document.getElementById('container').classList.add('center-highscore');
+  document.getElementById('timer').classList.add('hide');
+  document.getElementById('timer').classList.add('hide');
+};
